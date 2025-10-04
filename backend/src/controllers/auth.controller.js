@@ -29,7 +29,7 @@ async function registerUser(req, res) {
     // Generate token
     const token = jwt.sign(
       { id: user._id },
-      "d841b6490db4b52baab26b4e51b71f2e8fb9755f"
+     process.env.JWT_SECRET
     );
 
     // Set cookie + response
@@ -71,7 +71,7 @@ async function loginUser(req, res) {
     // Generate token
     const token = jwt.sign(
       { id: user._id },
-      "d841b6490db4b52baab26b4e51b71f2e8fb9755f"
+     process.env.JWT_SECRET
     );
 
     // Set cookie + response
@@ -89,7 +89,16 @@ async function loginUser(req, res) {
   }
 }
 
+//---------logout------------
+ function logoutUser(req,res){
+  res.clearCookie("token");
+  res.status(200).json({
+    message:"User loggout out successfully"
+  });
+ }
+
 module.exports = {
   registerUser,
   loginUser,
+  logoutUser
 };
