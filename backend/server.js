@@ -5,6 +5,8 @@ const app =require('./src/app');
 const connectDB =require('./src/db/db')
 
 connectDB();
+//console.log("Mongo URI:", process.env.MONGODB_URI);
+
 
 
 app.listen(3000,() =>{
